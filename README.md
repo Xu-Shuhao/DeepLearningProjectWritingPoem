@@ -19,4 +19,4 @@ TensorFlow RNN LSTM 写诗机器人
 分享码：ou00
 
 
-答辩视频 https://v.youku.com/v_show/id_XNDE1MTU3MTI5Mg==.html?spm=a2hzp.8244740.0.0
+答辩视频 https://www.bilibili.com/video/av50350607
