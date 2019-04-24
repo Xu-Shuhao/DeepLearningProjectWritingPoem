@@ -1,0 +1,14 @@
+@import '../color.scss';
+
+.zhui-pagination {
+  span {
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  &-active {
+    color: $meihong;
+    border-bottom: 2px solid $meihong;
+  }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="../static/style/index.css">
+    <link rel="stylesheet" href="../static/Live2D/live2d/css/live2d.css" />
+    <link rel="icon" href="../static/picture/hyjj.ico" type="image/x-icon"/>
+    <meta charset="UTF-8">
+    <title>作诗姬</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            animation: run1 400ms;
+        }
+
+        @keyframes run1 {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #box img.bj {
+            width: 100%;
+        }
+
+        #box img.sc1 {
+            width: 15%;
+            position: absolute;
+            top: 60%;
+            left: 85%;
+
+            animation: run2 78s linear infinite 2s;
+        }
+
+        @keyframes run2 {
+            from {
+                left: 85%;
+            }
+            to {
+                left: 25%
+            }
+        }
+
+        #box img.sc2 {
+            width: 12%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            animation: run3 20s linear infinite 1s;
+        }
+
+        @keyframes run3 {
+            0% {
+                width: 12%;
+            }
+            50% {
+                width: 15%;
+            }
+            100% {
+                width: 12%;
+            }
+        }
+
+        #box img#lsm {
+            position: absolute;
+            top: 0;
+            left: -900px;
+            animation: run4 80s linear infinite 4s;
+        }
+
+        @keyframes run4 {
+            from {
+                left: -900px;
+            }
+            to {
+                left: -300px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="box" style="position:absolute;z-index:-1;">
+    <img src="../static/picture/2b.png"/>
+    <img src="../static/picture/1s.png" class="sc1"/>
+    <img src="../static/picture/2s.png" class="sc2"/>
+    <img src="../static/picture/lsm.png" id="lsm"/>
+</div>
+<div id="landlord">
+    <div class="message" style="opacity:0"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <div class="hide-button">隐藏</div>
+</div>
+<h3 style="font-family:华文行楷;">小小作诗姬</h3>
+<div id="cont"><input type=text size=28 name=poemhead, id=ph style="font-size: 180%; text-align: center; font-family: 全新硬笔行书简;">
+    <span id=result></span></div>
+<button type="button" value="作诗姬一下" id="btn-zsj"
+        class="btn waves-effect waves-teal tooltipped z-depth-3 hoverable"
+        data-position="bottom" data-delay="50" data-tooltip="点我作诗呀" >作诗姬一下</button>
+
+<div id="loading">
+        <p id="result"></p>
+</div>
+
+</body>
+<script>
+   $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+
+</script>
+    <script type="text/javascript">
+    var message_Path = '../static/Live2D/live2d/'
+    var home_Path = '127.0.0.1/'  //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="../static/Live2D/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="../static/Live2D/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "../static/Live2D/live2d/model/tia/model.json");
+</script>
+<script type=text/javascript>
+    $(function () {
+        $("#btn-zsj").click(function () {
+            var data1 = {
+                data: JSON.stringify({
+                    "value": $('#ph').val()
+                })
+            };
+
+            $.ajax({
+                url: "/write",
+                type: 'POST',
+                data: data1,
+                dataType: 'text',
+                beforeSend: function () {
+                    $("div#loading").html(
+                          '<div class="progress"><div class="indeterminate"></div></div><p id="result" style="font-size: 80px">小姬正在写诗中</p>'
+                    )
+                },
+                success: function (tt) {
+                    tt = tt.replace(/。/g, '。#');
+                    var result = split(tt);
+                     $("div#loading").html('<div style="text-align:center;"><p style="font-family: 全新硬笔行书简; font-size: 80px;">'+$('#ph').val()+'</p></div><br><p id="result" style="font-family: 全新硬笔行书简; font-size: 60px"> </p>')
+                    $("p#result").html(result);
+                }
+            })
+
+            function split(text) {
+                var txts = text.split('#');
+                var ulist = '<dl id="poem" style="text-align:center;">';
+                $.each(txts, function (index, obj) {
+                    ulist = ulist + '<dd style="text-align:center;">' + obj + '</dd>';
+                })
+                ulist += '</dl>';
+                return ulist
+            }
+        })
+    })
+    ;
+</script>
+
+</html>

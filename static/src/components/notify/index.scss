@@ -1,0 +1,57 @@
+@import '../color.scss';
+
+$border: #eefd09;
+$textBorder: #f9d79b;
+
+.zhui-notify {
+  &-container {
+    position: absolute;
+    top: 80px;
+    right: 30px;
+    
+    .zhui-portal {
+      position: fixed;
+      z-index: 10;
+    }
+  }
+
+  &-inner {
+    position: relative;
+    float: left;
+    width: 30px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #eefd09;
+    // text-shadow: 0 1px $border, 1px 0 $border, -1px 0 $border, 0 -1px $border;
+    background: #ca010c;
+    padding: 10px 8px;
+    text-align: center;
+    animation: unfold .3s linear;
+    overflow: hidden;
+    border-top: 4px solid $border;
+    border-bottom: 4px solid $border;
+  }
+
+  &-exit {
+    animation: fold .5s linear forwards;
+  }
+
+  @keyframes unfold {
+    from {
+      max-height: 0;
+    } to {
+      max-height: 400px;
+    }
+  }
+  
+  @keyframes fold {
+    from {
+      max-height: 400px;
+    } to {
+      max-height: 0;
+    }
+
+    80% {
+    }
+  }
+}

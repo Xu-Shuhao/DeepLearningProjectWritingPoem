@@ -1,0 +1,23 @@
+{
+    "mouseover": [
+        {
+            "selector": "#ph",
+            "text": ["输入的是中文哦，而且不要很复杂啦，小姬很笨的(＊／ω＼＊)"]
+        },
+		{
+            "selector": "#landlord #live2d",
+            "text": ["让小姬给你作一首诗吧，啦啦啦❤～"]
+        }
+		,
+		{
+            "selector": "#btn-zsj",
+            "text": ["点呀点呀，我可要一展身手啦"]
+        }
+    ],
+    "click": [
+        {
+            "selector": "#landlord #live2d",
+            "text": ["哎呀，作诗点下面的按钮啊，点人家干嘛，色狼o(≧口≦)o"]
+        }
+    ]
+}
