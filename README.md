@@ -17,3 +17,6 @@ TensorFlow RNN LSTM 写诗机器人
 【数据及模型+完整项目】
 百度云地址：https://pan.baidu.com/s/1vhxCkKhV5jxcZcHAlXZl9Q
 分享码：ou00
+
+
+答辩视频 https://v.youku.com/v_show/id_XNDE1MTU3MTI5Mg==.html?spm=a2hzp.8244740.0.0
