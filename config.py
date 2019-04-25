@@ -8,7 +8,7 @@ import random
 import time
 import collections
 
-batchSize = 256
+batchSize = 128
 
 learningRateBase = 0.001
 learningRateDecayStep = 1000
